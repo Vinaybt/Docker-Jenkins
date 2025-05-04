@@ -6,6 +6,15 @@ pipeline {
     }
 
     stages {
+        stage('Check Docker Access') {
+            steps {
+                script {
+                    sh 'whoami'
+                    sh 'groups'
+                    sh 'docker version'
+                }
+            }
+        }
         stage('Clone Repo') {
             steps {
                 git url: 'https://github.com/Vinaybt/Jenkins-Pipeline.git', branch: 'main'
